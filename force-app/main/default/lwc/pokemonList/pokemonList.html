@@ -1,0 +1,105 @@
+<!--Nome Guilherme Henrique Correia da Silva email: guilhermehenriquecds@gmail.com-->
+<template>
+    <p>Desenvolvido por: Guilherme Henrique Correia da Silva guilhermehenriquecds@gmail.com</p>
+    <lightning-card title="Pokemons" icon-name="utility:animal_and_nature">
+    <div class="fundo">
+        <!--Caixa de Pesquisa Inicio-->
+        <div class="search"> 
+        <lightning-input type="search"
+                        onchange={handlerSearch}
+                        variant="label-hidden"
+                        class="slds-vars-m-bottom_small slds-p-left_medium slds-p-rigth_medium"
+                        placeholder="Pesquise por seu pokemon"
+                        value={searchWords}
+                        size="4"
+                        >
+                        
+                    </lightning-input>
+        </div>
+
+        <div class="combobox">
+        <lightning-combobox
+        name="Tipo"
+        label="Tipo"
+        value={value}
+        placeholder="Selecione o Tipo"
+        options={options}
+        onchange={handleTipo} ></lightning-combobox>
+        
+        
+        <lightning-combobox
+        name="Geracao"
+        label="Geração"
+        value={value}
+        placeholder="Selecione a Geração"
+        options={optionsGeracao}
+        onchange={handleGeracao} ></lightning-combobox>
+        </div>
+            <div class="quantidade">
+                <p>Pokemons: {contPokemon} </p>
+                
+            </div>
+        <!--Caixa de Pesquisa Fim-->
+        
+        <template if:true={pokemons}>
+            <template if:false={isSearchAvaliable}>
+            <lightning-layout multiple-rows="true"  >
+                        
+                <template for:each={pokemons} for:item="pokemonsdetails">
+            
+                    <lightning-layout-item key={pokemonsdetails.Id} size="2" class="slds-var-p-around_x-small" >
+                        <!--Inicio cartao pokemon-->
+                        
+                        <lightning-card title={pokemonsdetails.Name} class="pokemon_card" pokemons={pokemons}>
+                            <div slot="actions">
+                            <lightning-button-icon
+                                    icon-name="utility:search"
+                                    icon-class="bear-tile-button"
+                                    variant="bare"
+                                    value={pokemonsdetails.Id}
+                                    alternative-text="Open record"
+                                    onclick={handlePokeView}></lightning-button-icon>
+                            </div>
+                        <div class="slds-p-vertical_xxx-small ">
+                                <div class="slds-media ">
+                                    <div class="slds-media__figure ">
+                                        <img src={pokemonsdetails.picture_url__c} alt="pokemon" class="pokemon_images" />
+                                    </div>
+                                        
+                                    <div class="slds-media__body">
+                                        <p class="slds-var-m-bottom_xx-small"><strong>Altura:</strong>{pokemonsdetails.Height__c}</p>
+                                        <p class="slds-var-m-bottom_xx-small"><strong>Peso:</strong>{pokemonsdetails.Weight__c}</p>
+                                        <p class="slds-var-m-bottom_xx-small"><strong>Tipo:</strong>{pokemonsdetails.Type__c}</p>
+                                        <p class="slds-var-m-bottom_xx-small"><strong>Geração:</strong>{pokemonsdetails.Generation__c}</p>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        
+                        </lightning-card>
+                        <!--FIM cartao pokemon-->
+                    </lightning-layout-item>
+                
+                </template>
+            
+            </lightning-layout>
+        </template>
+
+        <template if:true={isSearchAvaliable}>
+            Não Encontramos a sua pesquisa ...
+        </template>
+
+        </template>
+
+        <template if:true={error}>
+            <div class="carregar">
+                <img src="https://cdn.dribbble.com/users/1771704/screenshots/6124573/attachments/1313609/pokeball.gif?compress=1&resize=400x300&vertical=top" class="gif" alt="">
+            </div>
+            <div class="botaoCarregar">
+                <lightning-button variant="destructive" label="Carregar Pokemons ..." title="Carregar..." onclick={handleClickBatch} class="slds-m-left_x-small"></lightning-button>
+            </div>
+        </template>
+    </div>        
+    </lightning-card>
+
+</template>

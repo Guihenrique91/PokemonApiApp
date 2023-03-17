@@ -1,0 +1,56 @@
+.pokemon_card{
+    border: 0.25px solid rgba(245, 245, 245, 0.89);
+    border-radius: 0.25rem;
+    display: block;
+    height: 200px;
+    width: 210px;
+}
+.pokemon_images{
+    height: 100px;
+    width: 90px;
+    position: relative;
+}
+
+.combobox{
+    max-width: 200px;
+    padding-left: 25px;
+}
+
+.search{
+    max-width: 500px;
+    padding-left: 10px;
+    padding-top: 15px;
+}
+
+.quantidade{
+    font-size: larger;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    margin-left: auto;
+    margin-right: auto; 
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.carregar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+}
+
+.gif{
+    max-width:150px;
+    max-height:100px;
+    width: auto;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+.botaoCarregar{
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
